@@ -23,29 +23,33 @@
     <div class="container">
       <div class="card-panel">
         <div class="row">
-          <form id="input_form" class="col s12">
-            <h2>Contacts Book</h2>
+          <form id="input-form" class="col s12 l12">
+            <h2>Contacts</h2>
             <div class="row">
-              <div class="input-field col s6">
-                <input id="first_name" type="text" class="validate" />
-                <label for="first_name">First Name</label>
+              <div class="input-field col s6 l4">
+                <input id="first-name" type="text" class="validate" />
+                <label for="first-name">First Name</label>
               </div>
-              <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate" />
-                <label for="last_name">Last Name</label>
+              <div class="input-field col s6 l4">
+                <input id="last-name" type="text" class="validate" />
+                <label for="last-name">Last Name</label>
               </div>
             </div>
 
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s12 l8">
                 <input id="phone" type="text" class="validate" />
-                <label for="phone">Phone Number</label>
+                <label for="phone">
+                  <i class="material-icons">phone</i> Phone Number</label
+                >
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s12 l8">
                 <input id="email" type="email" class="validate" />
-                <label for="email">Email</label>
+                <label for="email"
+                  ><i class="material-icons">email</i> Email</label
+                >
               </div>
             </div>
             <input type="submit" class="btn" value="Add Contact" />
@@ -54,29 +58,44 @@
       </div>
       <div class="card-panel">
         <div class="row">
-          <div class="input-field col s6">
-            <input id="filter_input" type="text" class="validate" />
-            <label for="filter_input">Enter Contact's Name</label>
+          <div class="input-field col s12 l8">
+            <input id="filter-input" type="text" class="validate" />
+            <label for="filter-input"
+              ><i class="material-icons">search</i>Enter Name</label
+            >
           </div>
-          <div class="col s12">
-            <ul class="collection">
-              <li class="collection-item contact">
+          <div class="col s12 l8">
+            <ul id="contacts-list" class="collection">
+              <li class="collection-item contact avatar">
+                <i class="material-icons circle teal large">person</i>
                 <span class="title">FirstName LastName</span>
                 <p>Phone Number</p>
                 <p>Email Address</p>
                 <a href="#!" class="secondary-content"
-                  ><i class="material-icons">delete</i></a
+                  ><i class="material-icons red-text">delete</i></a
                 >
               </li>
-              <li class="collection-item contact">
+              <li class="collection-item contact avatar">
+                <i class="material-icons circle teal large">person</i>
                 <span class="title">FirstName LastName</span>
                 <p>Phone Number</p>
                 <p>Email Address</p>
                 <a href="#!" class="secondary-content"
-                  ><i class="material-icons">delete</i></a
+                  ><i class="material-icons red-text">delete</i></a
+                >
+              </li>
+              <li class="collection-item contact avatar">
+                <i class="material-icons circle teal large">person</i>
+                <span class="title">FirstName LastName</span>
+                <p>Phone Number</p>
+                <p>Email Address</p>
+                <a href="#!" class="secondary-content"
+                  ><i class="material-icons red-text">delete</i></a
                 >
               </li>
             </ul>
+            <br />
+            <a href="#" id="clear-contacts" class="btn">Clear Contacts</a>
           </div>
         </div>
       </div>
