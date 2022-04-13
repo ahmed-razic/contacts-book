@@ -22,13 +22,64 @@ function loadEventListeners() {
 
 //Event functions
 
-function getContacts() {}
+function getContacts() {
+  const people = getContactsFromLocaleStorage();
+
+  people.forEach(function (person) {
+    const li = document.createElement('li');
+    li.className = 'collection-item contact avatar';
+
+    const avatar = document.createElement('i');
+    avatar.className = 'material-icons circle teal large';
+    avatar.appendChild(document.createTextNode('person'));
+
+    const personNames = document.createElement('span');
+    personNames.className = 'title';
+    personNames.appendChild(
+      document.createTextNode(`${person.firstName} ${person.lastName}`)
+    );
+
+    const phone = document.createElement('p');
+    phone.appendChild(document.createTextNode(`${person.phoneNumber}`));
+
+    const email = document.createElement('p');
+    email.appendChild(document.createTextNode(`${person.emailAddress}`));
+
+    const deleteIcon = document.createElement('i');
+    deleteIcon.className = 'material-icons red-text';
+    deleteIcon.appendChild(document.createTextNode('delete'));
+
+    const link = document.createElement('a');
+    link.className = 'secondary-content';
+    link.appendChild(deleteIcon);
+
+    li.appendChild(avatar);
+    li.appendChild(personNames);
+    li.appendChild(phone);
+    li.appendChild(email);
+    li.appendChild(link);
+
+    //append to contact list
+    contactsList.appendChild(li);
+  });
+}
 
 function addContact(e) {
   e.preventDefault();
 
   //get input data and store it into a person object
   const person = {};
+
+  if (
+    firstName.value === '' ||
+    lastName.value === '' ||
+    phoneNumber.value === '' ||
+    emailAddress.value === ''
+  ) {
+    alert('Please enter values in all fields');
+    return;
+  }
+
   person.firstName = firstName.value;
   person.lastName = lastName.value;
   person.phoneNumber = phoneNumber.value;
@@ -68,8 +119,10 @@ function addContact(e) {
   li.appendChild(email);
   li.appendChild(link);
 
+  //append to contact list
   contactsList.appendChild(li);
 
+  //save added contact to locale storage
   setContactsToLocaleStorage(person);
 }
 
@@ -77,11 +130,27 @@ function filterContacts() {}
 
 function deleteContact() {}
 
-function clearContacts() {}
+function clearContacts() {
+  while (contactsList.firstChild) {
+    contactsList.removeChild(contactsList.firstChild);
+  }
+
+  clearContactsFromLocaleStorage();
+}
 
 //Locale Storage Action
 
-function getContactsFromLocaleStorage() {}
+function getContactsFromLocaleStorage() {
+  let people;
+
+  if (localStorage.getItem('people') === null) {
+    people = [];
+  } else {
+    people = JSON.parse(localStorage.getItem('people'));
+  }
+
+  return people;
+}
 
 function setContactsToLocaleStorage(person) {
   let people;
@@ -96,4 +165,6 @@ function setContactsToLocaleStorage(person) {
   localStorage.setItem('people', JSON.stringify(people));
 }
 
-function clearContactsFromLocaleStorage() {}
+function clearContactsFromLocaleStorage() {
+  localStorage.clear();
+}
