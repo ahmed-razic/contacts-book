@@ -128,7 +128,21 @@ function addContact(e) {
   setContactsToLocaleStorage(person);
 }
 
-function filterContacts() {}
+function filterContacts() {
+  const contacts = document.querySelectorAll('.collection-item');
+
+  contacts.forEach(function (contact) {
+    if (
+      contact.children[1].textContent
+        .toLowerCase()
+        .indexOf(filterInput.value.toLowerCase()) !== -1
+    ) {
+      contact.style.display = 'block';
+    } else {
+      contact.style.display = 'none';
+    }
+  });
+}
 
 function deleteContact(e) {
   if (e.target.classList.contains('delete')) {
@@ -149,7 +163,7 @@ function clearContacts() {
   clearAllContactsFromLocaleStorage();
 }
 
-//Locale Storage Action
+//Locale Storage
 
 function getContactsFromLocaleStorage() {
   let people;
