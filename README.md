@@ -23,7 +23,7 @@
 
 ## About
 
-<p>Contact book is a small app, fully reposnsive. Uses Materialize for webpage looks and structure. Result of my JS learning path regarding DOM nodes manipulation and local storage. </p>
+<p>Contact book is a small app, fully responsive. Uses Materialize for webpage looks and structure. Result of my JS learning path regarding DOM nodes manipulation and local storage. </p>
 
 <p>Working app is deployed on Netlify.</p>
 
