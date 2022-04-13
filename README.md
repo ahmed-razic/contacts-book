@@ -34,4 +34,4 @@
 
 ## Screenshot
 
-<img src="/screenshot.jpg" height="600" style="border-radius:20px;margin-bottom:2rem;" />
+<img src="/screenshot.jpg" height="800" style="border-radius:20px;margin-bottom:2rem;" />
