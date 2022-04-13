@@ -126,6 +126,11 @@ function addContact(e) {
 
   //save added contact to locale storage
   setContactsToLocaleStorage(person);
+
+  firstName.value = '';
+  lastName.value = '';
+  phoneNumber.value = '';
+  emailAddress.value = '';
 }
 
 function filterContacts() {
@@ -146,7 +151,6 @@ function filterContacts() {
 
 function deleteContact(e) {
   if (e.target.classList.contains('delete')) {
-    console.log(e.target.parentElement.parentElement);
     e.target.parentElement.parentElement.remove();
 
     deleteContactFromLocalStorage(
