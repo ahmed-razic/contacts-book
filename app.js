@@ -106,7 +106,7 @@ function addContact(e) {
   email.appendChild(document.createTextNode(`${person.emailAddress}`));
 
   const deleteIcon = document.createElement('i');
-  deleteIcon.className = 'material-icons red-text';
+  deleteIcon.className = 'material-icons red-text delete';
   deleteIcon.appendChild(document.createTextNode('delete'));
 
   const link = document.createElement('a');
@@ -128,14 +128,21 @@ function addContact(e) {
 
 function filterContacts() {}
 
-function deleteContact() {}
+function deleteContact(e) {
+  console.log(e.target);
+  if (e.target.classList.contains('delete')) {
+    e.target.parentElement.parentElement.remove();
+  }
+
+  deleteContactFromLocalStorage();
+}
 
 function clearContacts() {
   while (contactsList.firstChild) {
     contactsList.removeChild(contactsList.firstChild);
   }
 
-  clearContactsFromLocaleStorage();
+  clearAllContactsFromLocaleStorage();
 }
 
 //Locale Storage Action
@@ -165,6 +172,8 @@ function setContactsToLocaleStorage(person) {
   localStorage.setItem('people', JSON.stringify(people));
 }
 
-function clearContactsFromLocaleStorage() {
+function clearAllContactsFromLocaleStorage() {
   localStorage.clear();
 }
+
+function deleteContactFromLocalStorage() {}
