@@ -8,17 +8,6 @@ const filterInput = document.querySelector('#filter-input');
 const contactsList = document.querySelector('#contacts-list');
 const clearButton = document.querySelector('#clear-contacts');
 
-// console.log(
-//   inputForm,
-//   firstName,
-//   lastName,
-//   phoneNumber,
-//   emailAddress,
-//   filterInput,
-//   contactsList,
-//   clearContacts
-// );
-
 //Load event listeners
 
 loadEventListeners();
@@ -37,37 +26,51 @@ function getContacts() {}
 
 function addContact(e) {
   e.preventDefault();
-  const person1 = {
-    firstName: 'Ahmed',
-    lastName: 'Razic',
-    email: 'ahmed.razic@gmail.com',
-    phone: '111-111-111',
-  };
-  const person2 = {
-    firstName: 'Ahmed',
-    lastName: 'Razic',
-    email: 'ahmed.razic@gmail.com',
-    phone: '222-222-222',
-  };
-  const person3 = {
-    firstName: 'Ahmed',
-    lastName: 'Razic',
-    email: 'ahmed.razic@gmail.com',
-    phone: '333-333-333',
-  };
 
-  let people = [];
-  people.push(person1, person2, person3);
+  //get input data and store it into a person object
+  const person = {};
+  person.firstName = firstName.value;
+  person.lastName = lastName.value;
+  person.phoneNumber = phoneNumber.value;
+  person.emailAddress = emailAddress.value;
 
-  console.log(people);
+  //make a list item and append it to ul
+  const li = document.createElement('li');
+  li.className = 'collection-item contact avatar';
 
-  localStorage.setItem('people', JSON.stringify(people));
+  const avatar = document.createElement('i');
+  avatar.className = 'material-icons circle teal large';
+  avatar.appendChild(document.createTextNode('person'));
 
-  const list = JSON.parse(localStorage.getItem('people'));
+  const personNames = document.createElement('span');
+  personNames.className = 'title';
+  personNames.appendChild(
+    document.createTextNode(`${person.firstName} ${person.lastName}`)
+  );
 
-  list.forEach(function (item) {
-    console.log(item.phone);
-  });
+  const phone = document.createElement('p');
+  phone.appendChild(document.createTextNode(`${person.phoneNumber}`));
+
+  const email = document.createElement('p');
+  email.appendChild(document.createTextNode(`${person.emailAddress}`));
+
+  const deleteIcon = document.createElement('i');
+  deleteIcon.className = 'material-icons red-text';
+  deleteIcon.appendChild(document.createTextNode('delete'));
+
+  const link = document.createElement('a');
+  link.className = 'secondary-content';
+  link.appendChild(deleteIcon);
+
+  li.appendChild(avatar);
+  li.appendChild(personNames);
+  li.appendChild(phone);
+  li.appendChild(email);
+  li.appendChild(link);
+
+  contactsList.appendChild(li);
+
+  setContactsToLocaleStorage(person);
 }
 
 function filterContacts() {}
@@ -80,6 +83,17 @@ function clearContacts() {}
 
 function getContactsFromLocaleStorage() {}
 
-function setContactsToLocaleStorage() {}
+function setContactsToLocaleStorage(person) {
+  let people;
+
+  if (localStorage.getItem('people') === null) {
+    people = [];
+  } else {
+    people = JSON.parse(localStorage.getItem('people'));
+  }
+
+  people.push(person);
+  localStorage.setItem('people', JSON.stringify(people));
+}
 
 function clearContactsFromLocaleStorage() {}
