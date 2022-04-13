@@ -3,7 +3,7 @@
 ---
 
 <div>
-<a href="https://silly-davinci-83f995.netlify.app/" target="_blank" rel="noopener noreferrer"
+<a href="https://stupendous-zuccutto-accbf2.netlify.app/" target="_blank" rel="noopener noreferrer"
     style="padding:0.5rem 0.7rem;
     color: black;
     background: #F1DEDE;
