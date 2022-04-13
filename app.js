@@ -46,11 +46,12 @@ function getContacts() {
     email.appendChild(document.createTextNode(`${person.emailAddress}`));
 
     const deleteIcon = document.createElement('i');
-    deleteIcon.className = 'material-icons red-text';
+    deleteIcon.className = 'material-icons red-text delete';
     deleteIcon.appendChild(document.createTextNode('delete'));
 
     const link = document.createElement('a');
     link.className = 'secondary-content';
+    link.style.cursor = 'pointer';
     link.appendChild(deleteIcon);
 
     li.appendChild(avatar);
@@ -111,6 +112,7 @@ function addContact(e) {
 
   const link = document.createElement('a');
   link.className = 'secondary-content';
+  link.style.cursor = 'pointer';
   link.appendChild(deleteIcon);
 
   li.appendChild(avatar);
@@ -129,12 +131,14 @@ function addContact(e) {
 function filterContacts() {}
 
 function deleteContact(e) {
-  console.log(e.target);
   if (e.target.classList.contains('delete')) {
+    console.log(e.target.parentElement.parentElement);
     e.target.parentElement.parentElement.remove();
-  }
 
-  deleteContactFromLocalStorage();
+    deleteContactFromLocalStorage(
+      e.target.parentElement.parentElement.children[1].textContent
+    );
+  }
 }
 
 function clearContacts() {
@@ -176,4 +180,13 @@ function clearAllContactsFromLocaleStorage() {
   localStorage.clear();
 }
 
-function deleteContactFromLocalStorage() {}
+function deleteContactFromLocalStorage(contact) {
+  const people = getContactsFromLocaleStorage();
+
+  people.forEach(function (person, index) {
+    if (contact === `${person.firstName} ${person.lastName}`) {
+      people.splice(index, 1);
+    }
+  });
+  localStorage.setItem('people', JSON.stringify(people));
+}
