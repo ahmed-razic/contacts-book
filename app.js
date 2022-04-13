@@ -6,7 +6,7 @@ const phoneNumber = document.querySelector('#phone');
 const emailAddress = document.querySelector('#email');
 const filterInput = document.querySelector('#filter-input');
 const contactsList = document.querySelector('#contacts-list');
-const clearContacts = document.querySelector('#clear-contacts');
+const clearButton = document.querySelector('#clear-contacts');
 
 // console.log(
 //   inputForm,
@@ -28,14 +28,47 @@ function loadEventListeners() {
   inputForm.addEventListener('submit', addContact);
   filterInput.addEventListener('keyup', filterContacts);
   contactsList.addEventListener('click', deleteContact);
-  clearContacts.addEventListener('click', clearContacts);
+  clearButton.addEventListener('click', clearContacts);
 }
 
 //Event functions
 
 function getContacts() {}
 
-function addContact() {}
+function addContact(e) {
+  e.preventDefault();
+  const person1 = {
+    firstName: 'Ahmed',
+    lastName: 'Razic',
+    email: 'ahmed.razic@gmail.com',
+    phone: '111-111-111',
+  };
+  const person2 = {
+    firstName: 'Ahmed',
+    lastName: 'Razic',
+    email: 'ahmed.razic@gmail.com',
+    phone: '222-222-222',
+  };
+  const person3 = {
+    firstName: 'Ahmed',
+    lastName: 'Razic',
+    email: 'ahmed.razic@gmail.com',
+    phone: '333-333-333',
+  };
+
+  let people = [];
+  people.push(person1, person2, person3);
+
+  console.log(people);
+
+  localStorage.setItem('people', JSON.stringify(people));
+
+  const list = JSON.parse(localStorage.getItem('people'));
+
+  list.forEach(function (item) {
+    console.log(item.phone);
+  });
+}
 
 function filterContacts() {}
 
