@@ -31,6 +31,8 @@
 
 <p>Vanila JS</p>
 <p>Materialize</p>
+<p>Local browser storage</p>
+
 
 ## Screenshot
 
